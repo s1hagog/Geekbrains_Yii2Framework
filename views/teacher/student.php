@@ -7,4 +7,4 @@
  */
 ?>
 
-<h2>Hello Student <?=$name?> and <?=$name2?></h2>
+<h2>Hello Students <?=$name?> and <?=$name2?> !!</h2>
