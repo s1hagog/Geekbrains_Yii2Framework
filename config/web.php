@@ -30,6 +30,9 @@ $config = [
         'dao'=>[
             'class' => \app\components\DaoComponent::class
         ],
+        'login' => [
+            'class'=> \app\components\LoginComponent::class
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '6OJyR9zUPJFzRvgHnx8M6zaoft1yoHRt',
@@ -38,7 +41,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Users',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [

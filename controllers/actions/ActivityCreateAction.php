@@ -27,11 +27,6 @@ class ActivityCreateAction extends BaseAction
 
         $model = $activityComponent->getModel();
 
-
-        //Создает сессию
-        $session = \Yii::$app->session;
-        $session->set('prevURL', $_SERVER['HTTP_REFERER']);
-
         if(\Yii::$app->request->isPost){
             $model->load(\Yii::$app->request->post());
 

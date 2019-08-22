@@ -12,53 +12,16 @@ namespace app\models;
 use Faker\Provider\cs_CZ\DateTime;
 use yii\base\Model;
 
-class Activity extends Model
+class Activity extends ActivityBase
 {
-    /**
-     * @var string
-     * Название события
-     */
-    public $title;
 
-    /**
-     * @var string
-     * Описание события
-     */
-    public $description;
-
-    /**
-     * @var int
-     * Дата начала события. В Unix timestamp
-     */
-    public $dateStart;
-
-    /**
-     * @var int
-     * Дата конца события. В Unix timestamp
-     */
-    public $dateEnd;
-
-    /**
-     * @var string
-     * Важность события
-     */
-    public $flag;
-
-    /**
-     * @var boolean
-     * Определеяет могут ли быть другие события на эту же дату.
-     * true = не могут
-     * false = могут
-     */
-    public $isBlocked;
-
-
-    /**
-     * @var boolean
-     * Определеяет может ли событие повторяться
-     */
-    public $isRepeatable;
-
+//    public $title;
+//    public $description;
+//    public $dateStart;
+//    public $dateEnd;
+//    public $flag;
+//    public $isBlocked;
+//    public $isRepeatable;
 
     public const REPEATABLE_TYPE = [
         1 => "Каждый день",
@@ -67,17 +30,17 @@ class Activity extends Model
         4 => 'Каждый год'
     ];
 
-    public $repeatableType;
-
-
-    public $isNotifying;
-
-    public $email;
+//    public $repeatableType;
+//
+//
+//    public $isNotifying;
+//
+//    public $email;
 
 
     public function rules()
     {
-        return [
+        return array_merge([
             [['title', 'description'], 'trim'],
             [[
                 'title',
@@ -97,7 +60,7 @@ class Activity extends Model
             ['email', 'required', 'when' => function($model){
                 return $model->isNotifying?true:false;
             }]
-        ];
+        ], parent::rules());
     }
 
     public function beforeValidate()

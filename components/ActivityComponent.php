@@ -24,8 +24,10 @@ class ActivityComponent extends Component
 
     public function createActivity(Activity &$activity): bool
     {
-        if($activity->validate()){
-            return true;
+        $activity->user_id=\Yii::$app->user->getId();
+
+        if(!$activity->save()){
+            return false;
         }
         return false;
     }
