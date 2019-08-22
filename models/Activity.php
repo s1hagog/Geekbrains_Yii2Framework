@@ -9,6 +9,7 @@
 namespace app\models;
 
 
+use app\models\rules\EndDateRules;
 use Faker\Provider\cs_CZ\DateTime;
 use yii\base\Model;
 
@@ -45,13 +46,13 @@ class Activity extends ActivityBase
             [[
                 'title',
                 'dateStart',
-                'dateEnd',
                 'isBlocked',
                 'isRepeatable'
             ], 'required'],
             ['dateStart', 'string'],
             ['dateStart', 'date', 'format' => 'php:Y-m-d'],
-            ['dateEnd', 'string'],
+//            ['dateEnd', EndDateRules::class],
+            ['dateEnd', 'endDateValidation'],
             ['description', 'string', 'min' => 5, 'max' => 150],
             ['repeatableType', 'in', 'range' => array_keys(self::REPEATABLE_TYPE)],
             [['isBlocked', 'isRepeatable', 'isNotifying'], 'boolean'],
@@ -61,6 +62,18 @@ class Activity extends ActivityBase
                 return $model->isNotifying?true:false;
             }]
         ], parent::rules());
+    }
+
+    public function endDateValidation($attr)
+    {
+        $this->addError('dateEnd', 'Ваше событие кончается раньше чем началось :(');
+
+        $dateEnd = \DateTime::createFromFormat('d.m.Y H:i', $this->dateEnd);
+        $dateStart = \DateTime::createFromFormat('d.m.Y H:i', $this->dateStart);
+
+        if($dateEnd < $dateStart){
+            $this->addError('dateEnd', 'Ваше событие кончается раньше чем началось :(');
+        }
     }
 
     public function beforeValidate()
