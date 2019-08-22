@@ -69,7 +69,7 @@ class DaoComponent extends Component
 
 
         //Другой способо использования тразакций , короткий
-        
+
 //        $this->getDb()->transaction(function (){
 //            $this->getDb()->createCommand()
 //                ->update('users', ['email' => 'email@email.ru'], ['id' => 1])
