@@ -40,7 +40,7 @@ class ActivityBase extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'dateStart', 'dateEnd', 'user_id'], 'required'],
+            [['title', 'dateStart', 'user_id'], 'required'],
             [['description'], 'string'],
             [['dateStart', 'dateEnd', 'createAt'], 'safe'],
             [['isBlocked', 'isRepeatable', 'isNotifying', 'isDeleted', 'user_id'], 'integer'],

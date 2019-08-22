@@ -28,6 +28,8 @@ class LoginComponent extends Component
         }
 
         return true;
+
+
     }
 
     public function signIn(Users &$model):bool

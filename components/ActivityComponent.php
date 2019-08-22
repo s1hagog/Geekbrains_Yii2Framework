@@ -20,15 +20,21 @@ class ActivityComponent extends Component
     public function getModel()
     {
         return new $this->classModel();
+
+
     }
 
     public function createActivity(Activity &$activity): bool
     {
         $activity->user_id=\Yii::$app->user->getId();
 
+        print_r($activity->getErrors());
+        exit;
+
+
         if(!$activity->save()){
             return false;
         }
-        return false;
+        return true;
     }
 }

@@ -23,6 +23,11 @@ class ActivityCreateAction extends BaseAction
 
     public function run()
     {
+        /**
+         * @var Activity $model
+         */
+
+
         $activityComponent = \Yii::createObject(['class' => ActivityComponent::class, 'classModel' => Activity::class]);
 
         $model = $activityComponent->getModel();
@@ -43,6 +48,7 @@ class ActivityCreateAction extends BaseAction
             }
 
             //После создания формы отобразим ее на основной странице события
+
             return $this->controller->render('index', ['name' => $this->name, 'model'=>$model]);
 
         }
